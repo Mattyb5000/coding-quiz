@@ -4,12 +4,12 @@ var question1 = document.getElementById("question");
 var scoreEl = document.getElementById("score");
 var answerOptions = document.getElementById("options");
 var currentQuestionIndex = 0;
-var score = document.getElementById("score");
 var header = document.getElementById("header");
 var selectionResponse = document.getElementById("response");
 var timeEl = document.querySelector(".time");
-var form = document.getElementById("#form")
+var form = document.getElementById("#form");
 var secondsLeft = 15;
+
 
 var questions = [
   {
@@ -66,12 +66,11 @@ startButton.addEventListener("click", function () {
 });
 
 function countdown() {
-
   var timerInterval = setInterval(function () {
     secondsLeft--;
     timeEl.textContent = secondsLeft;
     if (secondsLeft === 0) {
-      // stops timer function at 0 
+      // stops timer function at 0
       clearInterval(timerInterval);
       // alert("Game over!")
       sendMessage();
@@ -81,11 +80,8 @@ function countdown() {
 
 // change attributes to game over screen with form and score.
 function sendMessage() {
-  // alert("Game over!");
+  alert("Game over!");
 
-
-  
-  
   // time up or all questions answered then game over screen appears with form and score
 }
 
@@ -108,13 +104,13 @@ answerOptions.addEventListener("click", function (event) {
       currentQuestionIndex++;
     } else {
       // TODO: End the game
-      
+
       clearInterval(timerInterval);
-      
     }
-    
 
     displayQuestion();
   }
 });
-// Function calls
+
+
+

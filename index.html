@@ -10,17 +10,17 @@
 </head>
 
 <body>
-        <!-- high scores and timer -->
-        <nav>
-            <div id="score">
-                <h3>View High Scores: <span id="score"></span>0</h3>
-            </div>
-            <div>
-                <h3 class="time">Timer: <span id="seconds-remaining"></span>0</h3>
-            </div>
-        </nav>
-        <!-- quiz title -->
-        <section>
+    <!-- high scores and timer -->
+    <nav>
+        <div id="score">
+            <h3>High Scores: </h3>
+        </div>
+        <div>
+            <h3 class="time">Timer: 0</h3>
+        </div>
+    </nav>
+    <!-- quiz title -->
+    <section>
         <header id="header">
             <H1>Code Quiz Challenge!</H1>
             <p>Try to answer the code-related questions within the time limit. Keep in mind that incorrect answers will
@@ -35,16 +35,20 @@
             <!-- answer buttons-->
             <div id="options"></div>
             <div id="response"></div>
-           
+
         </div>
     </section>
-    </section>
-    <form action="submit" id="form" data-state="hidden"></form>
+    <form id="form" hidden>
+        <input placeholder="Enter your initials" id="initials" />
+        <button id="submit">Submit</button>
+    </form>
 
-        <main>
-            <div class="question-one"></div>
-        </main>
-        <script src="./assets/js/script.js"></script>
+    <main>
+        <div class="question-one">
+            
+        </div>
+    </main>
+    <script src="./assets/js/script.js"></script>
 </body>
 
 </html>
