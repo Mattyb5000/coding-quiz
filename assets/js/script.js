@@ -8,7 +8,6 @@ var score = document.getElementById("score");
 var header = document.getElementById("header");
 var selectionResponse = document.getElementById("response");
 var timeEl = document.querySelector(".time");
-var secondsLeft = 15;
 
 var questions = [
   {
@@ -47,7 +46,6 @@ var questions = [
 
 // Function definitions
 function displayQuestion() {
-
   question1.textContent = questions[currentQuestionIndex].question;
   answerOptions.innerHTML = "";
   for (var i = 0; i < 4; i++) {
@@ -62,21 +60,24 @@ function displayQuestion() {
 startButton.addEventListener("click", function () {
   displayQuestion();
   header.innerHTML = "";
-  var timerInterval = setInterval(function(){
-    secondsLeft--;
-    timeEl.textContent = secondsLeft;
-    if(secondsLeft === 0){
-      clearInterval(timerInterval);
-      // alert("Game over!")
-      sendMessage(;)
-    }
-  }, 1000);
+  countdown();
 });
 
-// change attributes to game over screen with form and score.
-
-
+function countdown() {
+  var secondsLeft = 15;
+  var timerInterval = setInterval(function () {
+    secondsLeft--;
+    timeEl.textContent = secondsLeft;
+    if (secondsLeft === 0) {
+      clearInterval(timerInterval);
+      // alert("Game over!")
+      sendMessage();
+    }
+  }, 1000);
 }
+
+// change attributes to game over screen with form and score.
+function sendMessage() {}
 
 answerOptions.addEventListener("click", function (event) {
   // console.log("You clicked an answer");
@@ -84,19 +85,19 @@ answerOptions.addEventListener("click", function (event) {
   if (clickedElement.matches("button")) {
     if (clickedElement.value === questions[currentQuestionIndex].solution) {
       // selectionResponse.textContent = "Right!"
-      alert("You're right!")
+      alert("You're right!");
       scoreEl++;
       // TODO: I want this to say on screen "YOU"RE RIGHT!" then go to next question instead of the alert"
     } else {
-      alert("You're wrong!")
+      alert("You're wrong!");
       // selectionResponse.textContent = "Wrong!"
-       // TODO: I want this to say on screen "YOU"RE wrong!" then go to next question instead of the alert"
+      // TODO: I want this to say on screen "YOU"RE wrong!" then go to next question instead of the alert"
     }
     if (currentQuestionIndex < questions.length - 1) {
       currentQuestionIndex++;
     } else {
       // TODO: End the game
-      // alert("Game over!");
+      alert("Game over!");
       header.innerHTML = "Game Over";
     }
 
