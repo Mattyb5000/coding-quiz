@@ -9,4 +9,4 @@ This project is a short timed quiz built using HTML and JavaScript. Time is subt
 ## Deployed site
 You can find the deployed site here:
 
-[Coding Quiz site](https://www.example.com)
+[Coding Quiz site](https://mattyb5000.github.io/coding-quiz/)
