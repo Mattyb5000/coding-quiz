@@ -8,8 +8,7 @@ var header = document.getElementById("header");
 var selectionResponse = document.getElementById("response");
 var timeEl = document.querySelector(".time");
 var form = document.getElementById("#form");
-var secondsLeft = 15;
-
+var secondsLeft = 30;
 
 var questions = [
   {
@@ -69,8 +68,8 @@ function countdown() {
   var timerInterval = setInterval(function () {
     secondsLeft--;
     timeEl.textContent = secondsLeft;
-    if (secondsLeft === 0) {
-      // stops timer function at 0
+    if (secondsLeft <= 0) {
+      // stops timer at 0
       clearInterval(timerInterval);
       // alert("Game over!")
       sendMessage();
@@ -92,13 +91,12 @@ answerOptions.addEventListener("click", function (event) {
     if (clickedElement.value === questions[currentQuestionIndex].solution) {
       // selectionResponse.textContent = "Right!"
       alert("You're right!");
-      scoreEl++;
-      // TODO: I want this to say on screen "YOU"RE RIGHT!" then go to next question instead of the alert"
+      
+  
     } else {
       alert("You're wrong!");
-      secondsLeft -= 3;
-      // selectionResponse.textContent = "Wrong!"
-      // TODO: I want this to say on screen "YOU"RE wrong!" then go to next question instead of the alert"
+      secondsLeft -= 10;
+
     }
     if (currentQuestionIndex < questions.length - 1) {
       currentQuestionIndex++;
