@@ -2,6 +2,13 @@
 var startButton = document.getElementById("start-button");
 var question1 = document.getElementById("question");
 var scoreEl = document.getElementById("score");
+var answerOptions = document.getElementById("options");
+var currentQuestionIndex = 0;
+var score = document.getElementById("score");
+var header = document.getElementById("header");
+var selectionResponse = document.getElementById("response");
+var timeEl = document.querySelector(".time");
+var secondsLeft = 15;
 
 var questions = [
   {
@@ -39,27 +46,61 @@ var questions = [
 ];
 
 // Function definitions
-function startQuiz() {
-  question1.textContent = questions[0].question;
-  for (var i = 0; i < 4; i++) {
-    console.log(questions[0].answers[i])
-    document.getElementById("options").innerHTML +=
-      "<button>" + questions[0].answers[i] + "</button> <br/>";
+function displayQuestion() {
 
+  question1.textContent = questions[currentQuestionIndex].question;
+  answerOptions.innerHTML = "";
+  for (var i = 0; i < 4; i++) {
+    // console.log(questions[currentQuestionIndex].answers[i]);
+    var button = document.createElement("button");
+    button.textContent = questions[currentQuestionIndex].answers[i];
+    button.setAttribute("value", questions[currentQuestionIndex].answers[i]);
+    answerOptions.append(button);
   }
 }
-questions[0].answers.length
-// function generateQuestion() {
-//   question1.textContent = questions[1].question;
-//   for (var i = 0; i < questions[1].answers.length; i++) {
-//     // console.log(questions[0].answers[i])
-//     document.getElementById("options").innerHTML +=
-//       "<button>" + questions[1].answers[i] + "</button> <br/>";
-//   }
-// }
-
 // Event listeners
 startButton.addEventListener("click", function () {
-  startQuiz();
+  displayQuestion();
+  header.innerHTML = "";
+  var timerInterval = setInterval(function(){
+    secondsLeft--;
+    timeEl.textContent = secondsLeft;
+    if(secondsLeft === 0){
+      clearInterval(timerInterval);
+      // alert("Game over!")
+      sendMessage(;)
+    }
+  }, 1000);
+});
+
+// change attributes to game over screen with form and score.
+
+
+}
+
+answerOptions.addEventListener("click", function (event) {
+  // console.log("You clicked an answer");
+  var clickedElement = event.target;
+  if (clickedElement.matches("button")) {
+    if (clickedElement.value === questions[currentQuestionIndex].solution) {
+      // selectionResponse.textContent = "Right!"
+      alert("You're right!")
+      scoreEl++;
+      // TODO: I want this to say on screen "YOU"RE RIGHT!" then go to next question instead of the alert"
+    } else {
+      alert("You're wrong!")
+      // selectionResponse.textContent = "Wrong!"
+       // TODO: I want this to say on screen "YOU"RE wrong!" then go to next question instead of the alert"
+    }
+    if (currentQuestionIndex < questions.length - 1) {
+      currentQuestionIndex++;
+    } else {
+      // TODO: End the game
+      // alert("Game over!");
+      header.innerHTML = "Game Over";
+    }
+
+    displayQuestion();
+  }
 });
 // Function calls

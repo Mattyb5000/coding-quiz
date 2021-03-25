@@ -10,32 +10,36 @@
 </head>
 
 <body>
-    <header>
         <!-- high scores and timer -->
         <nav>
             <div id="score">
-                <h3>View High Scores: <span id="score">0</span></h3>
+                <h3>View High Scores: <span id="score"></span>0</h3>
             </div>
             <div>
-                <h3>Timer: <span id="seconds-remaining">0</span></h3>
+                <h3 class="time">Timer: <span id="seconds-remaining"></span>0</h3>
             </div>
         </nav>
         <!-- quiz title -->
-        <div>
+        <section>
+        <header id="header">
             <H1>Code Quiz Challenge!</H1>
             <p>Try to answer the code-related questions within the time limit. Keep in mind that incorrect answers will
                 penalize your score/time by ten seconds!</p>
 
             <button type="button" id="start-button">Start</button>
-        </div>
+        </header>
 
         <div>
             <!-- questions -->
             <h2 id="question"></h2>
             <!-- answer buttons-->
             <div id="options"></div>
+            <div id="response"></div>
            
         </div>
+    </section>
+    </section>
+    <form action=""></form>
 
         <main>
             <div class="question-one"></div>
