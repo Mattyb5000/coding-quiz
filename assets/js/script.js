@@ -8,6 +8,8 @@ var score = document.getElementById("score");
 var header = document.getElementById("header");
 var selectionResponse = document.getElementById("response");
 var timeEl = document.querySelector(".time");
+var form = document.getElementById("#form")
+var secondsLeft = 15;
 
 var questions = [
   {
@@ -64,11 +66,12 @@ startButton.addEventListener("click", function () {
 });
 
 function countdown() {
-  var secondsLeft = 15;
+
   var timerInterval = setInterval(function () {
     secondsLeft--;
     timeEl.textContent = secondsLeft;
     if (secondsLeft === 0) {
+      // stops timer function at 0 
       clearInterval(timerInterval);
       // alert("Game over!")
       sendMessage();
@@ -77,7 +80,14 @@ function countdown() {
 }
 
 // change attributes to game over screen with form and score.
-function sendMessage() {}
+function sendMessage() {
+  // alert("Game over!");
+
+
+  
+  
+  // time up or all questions answered then game over screen appears with form and score
+}
 
 answerOptions.addEventListener("click", function (event) {
   // console.log("You clicked an answer");
@@ -90,6 +100,7 @@ answerOptions.addEventListener("click", function (event) {
       // TODO: I want this to say on screen "YOU"RE RIGHT!" then go to next question instead of the alert"
     } else {
       alert("You're wrong!");
+      secondsLeft -= 3;
       // selectionResponse.textContent = "Wrong!"
       // TODO: I want this to say on screen "YOU"RE wrong!" then go to next question instead of the alert"
     }
@@ -97,9 +108,11 @@ answerOptions.addEventListener("click", function (event) {
       currentQuestionIndex++;
     } else {
       // TODO: End the game
-      alert("Game over!");
-      header.innerHTML = "Game Over";
+      
+      clearInterval(timerInterval);
+      
     }
+    
 
     displayQuestion();
   }
