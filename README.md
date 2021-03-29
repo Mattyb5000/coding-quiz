@@ -4,7 +4,7 @@
 
 This project is a short timed quiz built using HTML and JavaScript. Time is subtracted for every wrong answer.  
 
-![Coding quiz site image](coding-quiz-site.png)
+![Coding quiz site image](assets/images/coding-quiz-site.png)
 
 ## Deployed site
 You can find the deployed site here:
