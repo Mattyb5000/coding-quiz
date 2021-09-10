@@ -48,6 +48,7 @@ var questions = [
 // Function definitions
 function displayQuestion() {
   question1.textContent = questions[currentQuestionIndex].question;
+  console.log(questions[currentQuestionIndex].question)
   answerOptions.innerHTML = "";
   for (var i = 0; i < 4; i++) {
     // console.log(questions[currentQuestionIndex].answers[i]);
@@ -73,14 +74,16 @@ function countdown() {
       // stops timer at 0
       clearInterval(timerInterval);
       // alert("Game over!")
-      sendMessage();
+      gameOver();
+
     }
   }, 1000);
 }
 
 // change attributes to game over screen with form and score.
-function sendMessage() {
-  alert("Game over!");
+function gameOver() {
+  timer.textContent = `Timer: 0`;
+    alert("Game over!");
 
   // time up or all questions answered then game over screen appears with form and score
 }
