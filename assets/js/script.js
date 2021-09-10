@@ -6,9 +6,9 @@ var answerOptions = document.getElementById("options");
 var currentQuestionIndex = 0;
 var header = document.getElementById("header");
 var selectionResponse = document.getElementById("response");
-var timeEl = document.querySelector(".time");
+var timer = document.querySelector("#time");
 var form = document.getElementById("#form");
-var secondsLeft = 30;
+var timeLeft = 30;
 
 var questions = [
   {
@@ -57,18 +57,19 @@ function displayQuestion() {
     answerOptions.append(button);
   }
 }
-// Event listeners
+
+// START BUTTON EVENT LISTENER
 startButton.addEventListener("click", function () {
-  displayQuestion();
-  header.innerHTML = "";
-  countdown();
+  displayQuestion(); // DISPLAYS QUESTION FUNCTION
+  header.innerHTML = ""; // CLEARS HEADING, PARAGRAPH, AND START BUTTON
+  countdown(); // CALLS COUNTDOWN FUNCTION TO BEGIN TIMER
 });
 
 function countdown() {
   var timerInterval = setInterval(function () {
-    secondsLeft--;
-    timeEl.textContent = secondsLeft;
-    if (secondsLeft <= 0) {
+    timeLeft--;
+    timer.textContent = `Timer: ${timeLeft}`;
+    if (timeLeft <= 0) {
       // stops timer at 0
       clearInterval(timerInterval);
       // alert("Game over!")
@@ -95,7 +96,7 @@ answerOptions.addEventListener("click", function (event) {
   
     } else {
       alert("You're wrong!");
-      secondsLeft -= 10;
+      timeLeft -= 10;
 
     }
     if (currentQuestionIndex < questions.length - 1) {
