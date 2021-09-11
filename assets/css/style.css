@@ -3,3 +3,7 @@ header h1 {
    justify-content: center; 
 }
 
+.hide {
+   display: none;
+}
+
