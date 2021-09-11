@@ -1,7 +1,6 @@
 // DOM variables
 var startButton = document.getElementById("start-button");
 var currentQuestion = document.getElementById("question");
-// var scoreEl = document.getElementById("score");
 var answerOptions = document.getElementById("options");
 var currentQuestionIndex = 0;
 var header = document.getElementById("header");
@@ -60,81 +59,65 @@ function displayQuestion() {
   }
 }
 
+function timerInterval(){
+  t = setInterval(countdown, 1000)
+ }
+ 
+ function endTimer() {
+   clearInterval(t)
+ }
+ 
+ function countdown() {
+   timeLeft--;
+   timer.textContent = `Timer: ${timeLeft}`;
+   if (timeLeft <= 0) {
+     gameOver(); 
+   }
+ }
+ 
+ function gameOver() {
+  //  if(!isGameOver){
+     timer.textContent = `Timer: 0`;
+     alert("Time's up!")
+     endTimer()
+  //  }
+ }
+
+ function gameWon() {
+    var initials = prompt("You win! Enter your initials!").toUpperCase()
+    while (initials === ""){
+      initials = prompt("Please enter your initials to continue.").toUpperCase()
+    }
+    highScore.innerHTML = `High Score: ${timeLeft}pts ${initials}`
+    timer.textContent = `Timer:`;
+  }
+
+
+// Event listeners
 startButton.addEventListener("click", function () {
   displayQuestion(); // DISPLAYS QUESTION FUNCTION
-  header.innerHTML = ""; // CLEARS HEADING, PARAGRAPH, AND START BUTTON
-  // header.classList.add("hide")
+  // header.innerHTML = ""; // CLEARS HEADING, PARAGRAPH, AND START BUTTON
+  header.classList.add("hide")
   timerInterval()
-
-
 });
-
-function timerInterval(){
- t = setInterval(countdown, 1000)
-}
-
-function endTimer() {
-  clearInterval(t)
-}
-
-function countdown() {
-  // timerInterval()
-  timeLeft--;
-  timer.textContent = `Timer: ${timeLeft}`;
-  if (timeLeft <= 0) {
-    gameOver(); 
-  }
-}
-
-function gameOver() {
-  if(!isGameOver){
-    alert("Time's up!");
-    timer.textContent = `Timer: 0`;
-    endTimer()
-  }
-
-}
 
 answerOptions.addEventListener("click", function (event) {
   var clickedElement = event.target;
   if (clickedElement.matches("button")) {
     if (clickedElement.value === questions[currentQuestionIndex].solution) {
       alert("You're right!");
-
     } else {
       alert("You're wrong!");
       timeLeft -= 10;
     }
     if (currentQuestionIndex < questions.length - 1) {
       currentQuestionIndex++;
-     
     }  else if(currentQuestionIndex = questions.length - 1){
       endTimer()
       gameWon()
-
-
     }
     displayQuestion();
   } 
 });
-
-
-
-
-
-function gameWon() {
-//   // TODO: REQUIRE INITIALS TO BE ENTERED
-  var initials = prompt("You win! Enter your initials!").toUpperCase()
-  highScore.innerHTML = `High Score: ${timeLeft}pts ${initials}`
-  timer.textContent = `Timer:`;
-}
-
-
-// START BUTTON EVENT LISTENER
-
-
-//  ANSWER BUTTONS EVENT LISTENER
-
-
 
 
